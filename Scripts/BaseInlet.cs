@@ -1,10 +1,9 @@
-﻿using LSL;
-using System;
+﻿using System;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Assets.LSL4Unity.Scripts.AbstractInlets
+namespace LSL4Unity.Scripts
 {
     public abstract class ABaseInlet : MonoBehaviour
     {
@@ -47,7 +46,7 @@ namespace Assets.LSL4Unity.Scripts.AbstractInlets
 
             Debug.Log(string.Format("LSL Stream {0} found for {1}", stream.Name, name));
 
-            inlet = new LSL.liblsl.StreamInlet(stream.Item);
+            inlet = new liblsl.StreamInlet(stream.Item);
             expectedChannels = stream.ChannelCount;
 
             OnStreamAvailable();

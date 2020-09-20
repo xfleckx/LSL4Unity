@@ -1,9 +1,8 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
 using UnityEditor;
-using LSL;
-using System.Collections.Generic;
+using UnityEngine;
 
-namespace Assets.LSL4Unity.EditorExtensions
+namespace LSL4Unity.Editor
 {
     public class LSLShowStreamsWindow : EditorWindow
     {

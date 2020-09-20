@@ -1,9 +1,9 @@
-﻿using UnityEngine;
-using UnityEditor.Callbacks;
+﻿using System.IO;
 using UnityEditor;
-using System.IO;
+using UnityEditor.Callbacks;
+using UnityEngine;
 
-namespace Assets.LSL4Unity.EditorExtensions
+namespace LSL4Unity.Editor
 { 
 
     public class BuildHooks {
@@ -11,7 +11,7 @@ namespace Assets.LSL4Unity.EditorExtensions
         const string LIB_LSL_NAME = "liblsl";
         const string PLUGIN_DIR = "Plugins";
 
-        [PostProcessBuildAttribute(1)]
+        [PostProcessBuild(1)]
         public static void OnPostprocessBuild(BuildTarget target, string pathToBuiltProject)
         {
             var buildName = Path.GetFileNameWithoutExtension(pathToBuiltProject);
@@ -33,20 +33,12 @@ namespace Assets.LSL4Unity.EditorExtensions
                 RenameLibFile(pluginDirectory, LSLEditorIntegration.lib64Name, LSLEditorIntegration.lib32Name, LSLEditorIntegration.DLL_ENDING);
             }
 
-            if (target == BuildTarget.StandaloneLinux)
-            {
-                RenameLibFile(pluginDirectory, LSLEditorIntegration.lib32Name, LSLEditorIntegration.lib64Name, LSLEditorIntegration.SO_ENDING);
-            }
-            else if (target == BuildTarget.StandaloneLinux64)
+            if (target == BuildTarget.StandaloneLinux64)
             {
                 RenameLibFile(pluginDirectory, LSLEditorIntegration.lib64Name, LSLEditorIntegration.lib32Name, LSLEditorIntegration.SO_ENDING);
             }
 
-            if (target == BuildTarget.StandaloneOSXIntel)
-            {
-                RenameLibFile(pluginDirectory, LSLEditorIntegration.lib32Name, LSLEditorIntegration.lib64Name, LSLEditorIntegration.BUNDLE_ENDING);
-            }
-            else if (target == BuildTarget.StandaloneOSXIntel64)
+            if (target == BuildTarget.StandaloneOSX)
             {
                 RenameLibFile(pluginDirectory, LSLEditorIntegration.lib64Name, LSLEditorIntegration.lib32Name, LSLEditorIntegration.BUNDLE_ENDING);
             }
